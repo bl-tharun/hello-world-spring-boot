@@ -50,5 +50,12 @@ public class GreetingService implements IGreetingService{
         existing.setMessage(updated.getMessage());
         return repository.save(existing);
     }
+
+    @Override
+    public void deleteGreeting(long id) {
+        Greeting greeting = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found"));
+        repository.delete(greeting);
+    }
 }
 
