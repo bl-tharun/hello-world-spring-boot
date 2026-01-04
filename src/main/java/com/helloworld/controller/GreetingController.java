@@ -19,21 +19,14 @@ public class GreetingController {
     @Autowired
     private GreetingService greetingService;
 
-    @GetMapping("/hello")
-    public Greeting sayHello() {
-        return greetingService.sayHello();
-    }
-
     @GetMapping("")
     public Greeting greeting(
             @RequestParam(value = "fname", defaultValue = "World") String fname,
             @RequestParam(value = "lname", defaultValue = "") String lname
     ) {
         User user = new User();
-        if (fname != null)
-            user.setFirstName(fname);
-        if (lname != null)
-            user.setLastName(lname);
+        user.setFirstName(fname);
+        user.setLastName(lname);
         return greetingService.addGreeting(user);
     }
 }

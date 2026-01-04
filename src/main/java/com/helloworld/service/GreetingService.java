@@ -10,15 +10,26 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class GreetingService {
-    private static final String template = "Hello, %s";
+
+    private static final String TEMPLATE = "Hello, %s";
     private final AtomicLong counter = new AtomicLong();
 
-    public Greeting sayHello() {
-        return new Greeting(counter.incrementAndGet(), "Hello World");
-    }
+    @Autowired
+    GreetingRepository repository;
 
     public Greeting addGreeting(User user) {
-        String message = String.format(template, (user.toString().isEmpty()) ? "World" : user.toString());
-        return new Greeting(counter.incrementAndGet(), message);
+
+        String fullName = user.getFirstName();
+
+        if (user.getLastName() != null && !user.getLastName().isBlank()) {
+            fullName += " " + user.getLastName();
+        }
+
+        String message = String.format(TEMPLATE, fullName);
+
+        return repository.save(
+                new Greeting(counter.incrementAndGet(), message)
+        );
     }
 }
+
