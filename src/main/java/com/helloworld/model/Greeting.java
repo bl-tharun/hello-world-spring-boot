@@ -6,12 +6,12 @@ import jakarta.persistence.Id;
 @Entity
 public class Greeting {
     @Id
-    private long id;
+    private Long id;
     private String message;
 
     public Greeting() {}
 
-    public Greeting(long id, String message) {
+    public Greeting(Long id, String message) {
         this.id = id;
         this.message = message;
     }
@@ -20,7 +20,7 @@ public class Greeting {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
