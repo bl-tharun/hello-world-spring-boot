@@ -6,6 +6,8 @@ import com.helloworld.service.IGreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/greetings")
@@ -28,5 +30,10 @@ public class GreetingController {
     @GetMapping("/param/{id}")
     public Greeting getGreeting(@PathVariable long id) {
         return greetingService.getGreetingById(id);
+    }
+
+    @GetMapping("/all")
+    public List<Greeting> getAll() {
+        return greetingService.getAll();
     }
 }
