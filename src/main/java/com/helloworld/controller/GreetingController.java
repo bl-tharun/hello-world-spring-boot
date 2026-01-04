@@ -24,10 +24,16 @@ public class GreetingController {
         return greetingService.sayHello();
     }
 
-//    @GetMapping("")
-//    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        User user = new User();
-//        user.setFirstName(name);
-//        return greetingService.addGreeting(user);
-//    }
+    @GetMapping("")
+    public Greeting greeting(
+            @RequestParam(value = "fname", defaultValue = "World") String fname,
+            @RequestParam(value = "lname", defaultValue = "") String lname
+    ) {
+        User user = new User();
+        if (fname != null)
+            user.setFirstName(fname);
+        if (lname != null)
+            user.setLastName(lname);
+        return greetingService.addGreeting(user);
+    }
 }

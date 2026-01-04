@@ -16,4 +16,9 @@ public class GreetingService {
     public Greeting sayHello() {
         return new Greeting(counter.incrementAndGet(), "Hello World");
     }
+
+    public Greeting addGreeting(User user) {
+        String message = String.format(template, (user.toString().isEmpty()) ? "World" : user.toString());
+        return new Greeting(counter.incrementAndGet(), message);
+    }
 }

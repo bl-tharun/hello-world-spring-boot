@@ -1,20 +1,25 @@
 package com.helloworld.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Greeting {
-    private long numberOfGreetings;
+    @Id
+    private long id;
     private String message;
 
-    public Greeting(long numberOfGreetings, String message) {
-        this.numberOfGreetings = numberOfGreetings;
+    public Greeting(long id, String message) {
+        this.id = id;
         this.message = message;
     }
 
-    public long getNumberOfGreetings() {
-        return numberOfGreetings;
+    public long getId() {
+        return id;
     }
 
-    public void setNumberOfGreetings(long numberOfGreetings) {
-        this.numberOfGreetings = numberOfGreetings;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getMessage() {
