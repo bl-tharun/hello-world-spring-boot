@@ -1,6 +1,7 @@
 package com.helloworld;
 
 import com.helloworld.component.DemoBean;
+import com.helloworld.component.EmployeeBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,10 @@ public class HelloWorldApplication {
         ApplicationContext context = SpringApplication.run(HelloWorldApplication.class, args);
         logger.debug("Checking Context: {}", context.getBean(DemoBean.class));
         logger.debug("\n*** Example using @Autowire annotation on property ***");
+        EmployeeBean employeeBean = context.getBean(EmployeeBean.class);
+        employeeBean.setEid(69);
+        employeeBean.setEname("Abhi");
+        employeeBean.showEmployeeDetails();
     }
 
 }
