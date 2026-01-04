@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-public class GreetingService {
+public class GreetingService implements IGreetingService{
 
     private static final String TEMPLATE = "Hello, %s";
     private final AtomicLong counter = new AtomicLong();
@@ -30,6 +30,11 @@ public class GreetingService {
         return repository.save(
                 new Greeting(counter.incrementAndGet(), message)
         );
+    }
+
+    @Override
+    public Greeting getGreetingById(long id) {
+        return repository.findById(id).orElse(null);
     }
 }
 
